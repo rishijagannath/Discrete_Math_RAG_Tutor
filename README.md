@@ -15,6 +15,22 @@ LLMs like ChatGPT and Claude consistently failed CS173 questions in a specific w
 - **Evaluation:** RAGAS + manual grading
 - **Deployment:** Streamlit on Hugging Face Spaces
 
+## Rag Outline
+
+PDFs
+  ↓
+Chunking
+  ↓
+Embeddings
+  ↓
+FAISS
+  ↓
+Retriever
+  ↓
+GPT
+  ↓
+Answer
+
 ## Results
 
 | Model | Tuning Set (30Q) | Evaluation Set (50Q) |
