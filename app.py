@@ -52,9 +52,10 @@ model = ChatOpenAI(
     model="o3-mini",
     openai_api_key=openai_api_key
 )
+
  
 # ── RAG prompt ────────────────────────────────────────────────────────────────
-def build_prompt(context: str, query: str) -> str:
+def build_prompt(context: str, query: str, history:str) -> str:
     return f"""You are an expert CS173 discrete mathematics tutor.
  
 Answer using only the provided context.
@@ -77,6 +78,9 @@ Formatting:
  
 Context:
 {context}
+
+History: 
+{history}
  
 Question:
 {query}"""
@@ -98,7 +102,8 @@ if query := st.chat_input("Ask a CS173 question..."):
         with st.spinner("Retrieving context and generating answer..."):
             retrieved_docs = vectorstore.similarity_search(query, k=4)
             context = "\n\n".join(d.page_content for d in retrieved_docs)
-            prompt = build_prompt(context, query)
+            history = "\n\n".join(f"{msg['role'].upper()}: {msg['content']}" for msg in st.session_state.messages[-6:])
+            prompt = build_prompt(context, query, history)
             response = model.invoke(prompt)
             answer = response.content
  
@@ -106,9 +111,9 @@ if query := st.chat_input("Ask a CS173 question..."):
  
         with st.expander("📄 Retrieved context (pages used)"):
             for i, doc in enumerate(retrieved_docs):
-                page = doc.metadata.get("page_label", "?")
-                st.markdown(f"**Chunk {i+1} — Page {page}**")
-                st.text(doc.page_content)
+                page_label = doc.metadata.get("page_label", "?")
+                page = int(page_label) - 15
+                st.text(page)
  
     st.session_state.messages.append({"role": "assistant", "content": answer})
  
