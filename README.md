@@ -16,7 +16,7 @@ I used to use LLMs like ChatGPT and Claude for my discrete math questions - whic
 - **Embeddings:** OpenAI text-embedding-3-large
 - **Vector Store:** FAISS
 - **Framework:** LangChain
-- **Evaluation:** RAGAS + manual grading
+- **Evaluation:** Manual Grading, secondary RAGAS testing
 - **Deployment:** Streamlit on Hugging Face Spaces
 
 ## Rag Outline
