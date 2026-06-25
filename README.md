@@ -2,9 +2,13 @@
 
 A Retrieval-Augmented Generation system built to answer CS173 (Discrete Mathematics) questions at UIUC with course-specific accuracy, notation, and proof conventions.
 
+## Try my chatbot out here!
+
+https://discretemathragtutor.streamlit.app/
+
 ## Motivation
 
-LLMs like ChatGPT and Claude consistently failed CS173 questions in a specific way — they lacked the course-specific context needed to give notation-consistent, assumption-accurate answers. This project grounds model responses in the official CS173 textbook to fix that.
+I used to use LLMs like ChatGPT and Claude for my discrete math questions - which both consistently hallucinated and struggled with CS173 questions. They lacked the course-specific context needed to give notation-consistent, assumption-accurate answers. This project grounds model responses in the official CS173 textbook to fix that.
 
 ## Tech Stack
 
